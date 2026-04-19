@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="MauiApp1.Pages.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="{Binding Title}">
+
+    <Grid BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">
+        <VerticalStackLayout
+            Spacing="20"
+            Padding="30"
+            VerticalOptions="Center">
+
+            <Label
+                Text="{Binding Title}"
+                FontSize="32"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
+
+            <Label
+                Text="{Binding ErrorMessage}"
+                TextColor="Red"
+                IsVisible="{Binding ErrorMessage, Converter={StaticResource StringNotEmptyConverter}}"
+                HorizontalOptions="Center" />
+
+            <Frame
+                BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource DarkSection}}"
+                BorderColor="{AppThemeBinding Light=#E0E0E0, Dark=#404040}"
+                Padding="20"
+                CornerRadius="10">
+
+                <VerticalStackLayout Spacing="15">
+
+                    <Label
+                        Text="Email"
+                        FontAttributes="Bold" />
+                    <Entry
+                        Text="{Binding Email}"
+                        Keyboard="Email"
+                        Placeholder="Enter your email" />
+
+                    <Label
+                        Text="Password"
+                        FontAttributes="Bold" />
+                    <Entry
+                        Text="{Binding Password}"
+                        IsPassword="True"
+                        Placeholder="Enter your password" />
+
+                    <Label
+                        Text="Confirm Password"
+                        FontAttributes="Bold"
+                        IsVisible="{Binding IsLoginMode, Converter={StaticResource InverseBooleanConverter}}" />
+                    <Entry
+                        Text="{Binding ConfirmPassword}"
+                        IsPassword="True"
+                        Placeholder="Confirm your password"
+                        IsVisible="{Binding IsLoginMode, Converter={StaticResource InverseBooleanConverter}}" />
+
+                    <Button
+                        Text="{Binding ButtonText}"
+                        Command="{Binding SubmitCommand}"
+                        IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBooleanConverter}}"
+                        BackgroundColor="{StaticResource Primary}"
+                        TextColor="White"
+                        CornerRadius="5"
+                        HeightRequest="50" />
+
+                    <ActivityIndicator
+                        IsVisible="{Binding IsBusy}"
+                        IsRunning="{Binding IsBusy}"
+                        HorizontalOptions="Center" />
+
+                </VerticalStackLayout>
+            </Frame>
+
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">
+                <Label
+                    Text="{Binding TogglePrompt}"
+                    TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray400}}" />
+                <Label
+                    Text="{Binding ToggleAction}"
+                    TextColor="{StaticResource Primary}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ToggleModeCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

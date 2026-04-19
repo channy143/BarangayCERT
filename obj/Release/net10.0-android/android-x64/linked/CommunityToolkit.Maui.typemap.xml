@@ -1,0 +1,7 @@
+<api type="release" assembly-name="CommunityToolkit.Maui" mvid="c9ef9fdfa4244828875682f4a7b8f2a2">
+  <module assembly-name="CommunityToolkit.Maui" mvid="c9ef9fdfa4244828875682f4a7b8f2a2" mvid-bytes="35/vySSkKEiHVoL0p7jyog==">
+    <types-scratch>
+      <entry key="crc648fc34c62be8fbbff/Snackbar_SnackbarCallback" java-name="crc648fc34c62be8fbbff/Snackbar_SnackbarCallback" managed-type-name="CommunityToolkit.Maui.Alerts.Snackbar/SnackbarCallback" token="33554471" />
+    </types-scratch>
+  </module>
+</api>

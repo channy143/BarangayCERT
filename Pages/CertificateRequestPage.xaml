@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="MauiApp1.Pages.CertificateRequestPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Request Certificate">
+
+    <Grid BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">
+        <ScrollView>
+            <VerticalStackLayout
+                Spacing="20"
+                Padding="20">
+
+                <Label
+                    Text="Request a Certificate"
+                    FontSize="24"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
+
+                <Label
+                    Text="{Binding ErrorMessage}"
+                    TextColor="Red"
+                    IsVisible="{Binding ErrorMessage, Converter={StaticResource StringNotEmptyConverter}}"
+                    HorizontalOptions="Center" />
+
+                <Frame
+                    BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource DarkSection}}"
+                    BorderColor="{AppThemeBinding Light=#E0E0E0, Dark=#404040}"
+                    Padding="20"
+                    CornerRadius="10">
+
+                    <VerticalStackLayout Spacing="15">
+
+                        <Label
+                            Text="Certificate Type *"
+                            FontAttributes="Bold" />
+                        <Picker
+                            Title="Select certificate type"
+                            ItemsSource="{Binding CertificateTypes}"
+                            SelectedItem="{Binding CertificateType}" />
+
+                        <Label
+                            Text="Purpose *"
+                            FontAttributes="Bold" />
+                        <Editor
+                            Text="{Binding Purpose}"
+                            Placeholder="Enter the purpose of this certificate request..."
+                            HeightRequest="100"
+                            AutoSize="TextChanges" />
+
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                            <Button
+                                Grid.Column="0"
+                                Text="Cancel"
+                                Command="{Binding CancelCommand}"
+                                BackgroundColor="{AppThemeBinding Light=#E0E0E0, Dark=#404040}"
+                                TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
+
+                            <Button
+                                Grid.Column="1"
+                                Text="Submit Request"
+                                Command="{Binding SubmitRequestCommand}"
+                                IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBooleanConverter}}"
+                                BackgroundColor="{StaticResource Primary}"
+                                TextColor="White" />
+                        </Grid>
+
+                        <ActivityIndicator
+                            IsVisible="{Binding IsBusy}"
+                            IsRunning="{Binding IsBusy}"
+                            HorizontalOptions="Center" />
+
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Label
+                    Text="Your request will be reviewed by an administrator. You will be notified once it is processed."
+                    FontSize="12"
+                    TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray400}}"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center" />
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

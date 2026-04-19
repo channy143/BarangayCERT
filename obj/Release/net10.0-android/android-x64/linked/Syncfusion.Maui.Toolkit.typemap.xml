@@ -1,0 +1,23 @@
+<api type="release" assembly-name="Syncfusion.Maui.Toolkit" mvid="f38ff8eef4704b538ca5bebf5b443f75">
+  <module assembly-name="Syncfusion.Maui.Toolkit" mvid="f38ff8eef4704b538ca5bebf5b443f75" mvid-bytes="7viP83D0U0uMpb6/W0Q/dQ==">
+    <types-scratch>
+      <entry key="crc6445ad3511b80f6fdf/GestureDetector_ScaleListener" java-name="crc6445ad3511b80f6fdf/GestureDetector_ScaleListener" managed-type-name="Syncfusion.Maui.Toolkit.Internals.GestureDetector/ScaleListener" token="33554771" />
+      <entry key="crc6445ad3511b80f6fdf/GestureDetector_ScrollListener" java-name="crc6445ad3511b80f6fdf/GestureDetector_ScrollListener" managed-type-name="Syncfusion.Maui.Toolkit.Internals.GestureDetector/ScrollListener" token="33554772" />
+      <entry key="crc6445ad3511b80f6fdf/NativeCustomScrolLayout" java-name="crc6445ad3511b80f6fdf/NativeCustomScrolLayout" managed-type-name="Syncfusion.Maui.Toolkit.Internals.NativeCustomScrolLayout" token="33554788" />
+      <entry key="crc6445ad3511b80f6fdf/WindowOverlayStack" java-name="crc6445ad3511b80f6fdf/WindowOverlayStack" managed-type-name="Syncfusion.Maui.Toolkit.Internals.WindowOverlayStack" token="33554804" />
+      <entry key="crc64c0976fbcdb365652/CustomAccessibilityDelegate" java-name="crc64c0976fbcdb365652/CustomAccessibilityDelegate" managed-type-name="Syncfusion.Maui.Toolkit.Graphics.Internals.CustomAccessibilityDelegate" token="33554807" />
+      <entry key="crc64c0976fbcdb365652/CustomAccessibilityProvider" java-name="crc64c0976fbcdb365652/CustomAccessibilityProvider" managed-type-name="Syncfusion.Maui.Toolkit.Graphics.Internals.CustomAccessibilityProvider" token="33554808" />
+      <entry key="crc64c0976fbcdb365652/StaticTextLayout" java-name="crc64c0976fbcdb365652/StaticTextLayout" managed-type-name="Syncfusion.Maui.Toolkit.Graphics.Internals.StaticTextLayout" token="33554818" />
+      <entry key="crc640516eac8f2b5dac9/LayoutViewGroupExt" java-name="crc640516eac8f2b5dac9/LayoutViewGroupExt" managed-type-name="Syncfusion.Maui.Toolkit.Platform.LayoutViewGroupExt" token="33554828" />
+      <entry key="crc649ff9379e8ecbf267/PlatformCarousel" java-name="crc649ff9379e8ecbf267/PlatformCarousel" managed-type-name="Syncfusion.Maui.Toolkit.Carousel.PlatformCarousel" token="33555042" />
+      <entry key="crc649ff9379e8ecbf267/SpaceItemDecoration" java-name="crc649ff9379e8ecbf267/SpaceItemDecoration" managed-type-name="Syncfusion.Maui.Toolkit.Carousel.SpaceItemDecoration" token="33555044" />
+      <entry key="crc649ff9379e8ecbf267/PlatformCarouselItem" java-name="crc649ff9379e8ecbf267/PlatformCarouselItem" managed-type-name="Syncfusion.Maui.Toolkit.Carousel.PlatformCarouselItem" token="33555045" />
+      <entry key="crc649ff9379e8ecbf267/CustomImageView" java-name="crc649ff9379e8ecbf267/CustomImageView" managed-type-name="Syncfusion.Maui.Toolkit.Carousel.CustomImageView" token="33555047" />
+      <entry key="crc649ff9379e8ecbf267/ItemAdapter" java-name="crc649ff9379e8ecbf267/ItemAdapter" managed-type-name="Syncfusion.Maui.Toolkit.Carousel.ItemAdapter" token="33555048" />
+      <entry key="crc649ff9379e8ecbf267/ViewHolder" java-name="crc649ff9379e8ecbf267/ViewHolder" managed-type-name="Syncfusion.Maui.Toolkit.Carousel.ViewHolder" token="33555049" />
+      <entry key="crc649c9364508479c7e4/NativeSnapLayout" java-name="crc649c9364508479c7e4/NativeSnapLayout" managed-type-name="Syncfusion.Maui.Toolkit.Calendar.NativeSnapLayout" token="33555113" />
+      <entry key="crc649c9364508479c7e4/NativeSnapLayout_FlingGestureListener" java-name="crc649c9364508479c7e4/NativeSnapLayout_FlingGestureListener" managed-type-name="Syncfusion.Maui.Toolkit.Calendar.NativeSnapLayout/FlingGestureListener" token="33555114" />
+      <entry key="crc64bc19a4343e4dd789/BottomSheetBorderPlatformView" java-name="crc64bc19a4343e4dd789/BottomSheetBorderPlatformView" managed-type-name="Syncfusion.Maui.Toolkit.BottomSheet.BottomSheetBorderPlatformView" token="33555123" />
+    </types-scratch>
+  </module>
+</api>

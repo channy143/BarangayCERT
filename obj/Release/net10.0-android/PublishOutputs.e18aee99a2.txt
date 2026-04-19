@@ -1,0 +1,4 @@
+C:\Users\acer\source\repos\MauiApp1\MauiApp1\bin\Release\net10.0-android\publish\com.companyname.mauiapp1-Signed.aab
+C:\Users\acer\source\repos\MauiApp1\MauiApp1\bin\Release\net10.0-android\publish\com.companyname.mauiapp1.aab
+C:\Users\acer\source\repos\MauiApp1\MauiApp1\bin\Release\net10.0-android\publish\com.companyname.mauiapp1-Signed.apk
+C:\Users\acer\source\repos\MauiApp1\MauiApp1\bin\Release\net10.0-android\publish\_Microsoft.Android.Resource.Designer.dll

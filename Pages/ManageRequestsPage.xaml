@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="MauiApp1.Pages.ManageRequestsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:MauiApp1.Pages.Controls"
+    Title="Manage Certificate Requests">
+
+    <Grid BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Header Stats -->
+        <Frame
+            Grid.Row="0"
+            Margin="15,15,15,0"
+            BackgroundColor="{StaticResource Primary}"
+            CornerRadius="10"
+            Padding="15">
+            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                <Label
+                    Text="{Binding PendingCount}"
+                    FontSize="28"
+                    FontAttributes="Bold"
+                    TextColor="White" />
+                <Label
+                    Text="Pending Requests"
+                    FontSize="16"
+                    VerticalOptions="Center"
+                    TextColor="White" />
+            </HorizontalStackLayout>
+        </Frame>
+
+        <!-- Section Title -->
+        <Label
+            Grid.Row="1"
+            Text="Pending Requests"
+            FontSize="18"
+            FontAttributes="Bold"
+            Margin="15,10,15,5"
+            TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
+
+        <!-- Pending Requests List -->
+        <RefreshView
+            Grid.Row="2"
+            IsRefreshing="{Binding IsRefreshing}"
+            Command="{Binding RefreshCommand}">
+            <CollectionView
+                ItemsSource="{Binding PendingRequests}"
+                EmptyView="No pending certificate requests.">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <controls:CertificateRequestView
+                            Request="{Binding .}"
+                            ApproveCommand="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.OpenApprovalDialogCommand}"
+                            ViewDetailsCommand="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.ViewRequestDetailsCommand}"
+                            DeleteCommand="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DeleteRequestCommand}"
+                            ApproveCommandParameter="{Binding .}"
+                            ViewDetailsCommandParameter="{Binding .}"
+                            DeleteCommandParameter="{Binding .}" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+
+        <!-- Approval Dialog Overlay -->
+        <Grid
+            Grid.Row="0"
+            Grid.RowSpan="3"
+            BackgroundColor="#80000000"
+            IsVisible="{Binding ShowApprovalDialog}">
+            <Frame
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                WidthRequest="350"
+                BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource DarkSection}}"
+                Padding="20"
+                CornerRadius="10">
+                <VerticalStackLayout Spacing="15">
+                    <Label
+                        Text="Process Request"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center" />
+
+                    <Label Text="{Binding SelectedRequest.CertificateType, StringFormat='Certificate: {0}'}" />
+                    <Label Text="{Binding SelectedRequest.Requester.Email, StringFormat='Requested by: {0}'}" />
+                    <Label Text="{Binding SelectedRequest.Purpose, StringFormat='Purpose: {0}'}" />
+
+                    <Label
+                        Text="Admin Notes (Optional)"
+                        FontAttributes="Bold" />
+                    <Editor
+                        Text="{Binding AdminNotes}"
+                        Placeholder="Add notes about this decision..."
+                        HeightRequest="80" />
+
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                        <Button
+                            Grid.Column="0"
+                            Text="Reject"
+                            Command="{Binding RejectRequestCommand}"
+                            BackgroundColor="#DC3545"
+                            TextColor="White" />
+                        <Button
+                            Grid.Column="1"
+                            Text="Approve"
+                            Command="{Binding ApproveRequestCommand}"
+                            BackgroundColor="#28A745"
+                            TextColor="White" />
+                    </Grid>
+
+                    <Button
+                        Text="Cancel"
+                        Command="{Binding CloseApprovalDialogCommand}"
+                        BackgroundColor="{AppThemeBinding Light=#E0E0E0, Dark=#404040}"
+                        TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
+                </VerticalStackLayout>
+            </Frame>
+        </Grid>
+
+        <!-- Loading Indicator -->
+        <ActivityIndicator
+            Grid.Row="0"
+            Grid.RowSpan="3"
+            IsVisible="{Binding IsBusy}"
+            IsRunning="{Binding IsBusy}"
+            HorizontalOptions="Center"
+            VerticalOptions="Center" />
+    </Grid>
+</ContentPage>

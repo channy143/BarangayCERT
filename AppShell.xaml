@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MauiApp1.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:sf="clr-namespace:Syncfusion.Maui.Toolkit.SegmentedControl;assembly=Syncfusion.Maui.Toolkit"
+    xmlns:pages="clr-namespace:MauiApp1.Pages"
+    Shell.FlyoutBehavior="Flyout"
+    Title="MauiApp1">
+
+    <!-- Login Route (not authenticated users) -->
+    <ShellContent
+        x:Name="LoginShellContent"
+        Title="Sign In"
+        ContentTemplate="{DataTemplate pages:LoginPage}"
+        Route="login"
+        FlyoutItemIsVisible="False" />
+
+    <!-- Main App Routes (authenticated users) -->
+    <ShellContent
+        x:Name="MainShellContent"
+        Title="Dashboard"
+        Icon="{StaticResource IconDashboard}"
+        ContentTemplate="{DataTemplate pages:MainPage}"
+        Route="main" />
+
+    <ShellContent
+        x:Name="ProjectsShellContent"
+        Title="Projects"
+        Icon="{StaticResource IconProjects}"
+        ContentTemplate="{DataTemplate pages:ProjectListPage}"
+        Route="projects" />
+
+    <ShellContent
+        x:Name="ManageMetaShellContent"
+        Title="Manage Meta"
+        Icon="{StaticResource IconMeta}"
+        ContentTemplate="{DataTemplate pages:ManageMetaPage}"
+        Route="manage" />
+
+    <!-- Certificate Request (for Users) -->
+    <ShellContent
+        x:Name="CertificateRequestShellContent"
+        Title="Request Certificate"
+        Icon="{StaticResource IconCertificate}"
+        ContentTemplate="{DataTemplate pages:CertificateRequestPage}"
+        Route="certificate-request" />
+
+    <!-- Manage Requests (for Admins) -->
+    <ShellContent
+        x:Name="ManageRequestsShellContent"
+        Title="Manage Requests"
+        Icon="{StaticResource IconManageRequests}"
+        ContentTemplate="{DataTemplate pages:ManageRequestsPage}"
+        Route="manage-requests" />
+
+    <Shell.FlyoutFooter>
+        <Grid Padding="15">
+            <sf:SfSegmentedControl x:Name="ThemeSegmentedControl" 
+                VerticalOptions="Center" HorizontalOptions="Center" SelectionChanged="SfSegmentedControl_SelectionChanged"
+                SegmentWidth="40" SegmentHeight="40">
+                <sf:SfSegmentedControl.ItemsSource>
+                    <x:Array Type="{x:Type sf:SfSegmentItem}">
+                        <sf:SfSegmentItem ImageSource="{StaticResource IconLight}" SemanticProperties.Description="Light mode"/>
+                        <sf:SfSegmentItem ImageSource="{StaticResource IconDark}" SemanticProperties.Description="Dark mode"/>
+                    </x:Array>
+                </sf:SfSegmentedControl.ItemsSource>
+            </sf:SfSegmentedControl>
+        </Grid>
+    </Shell.FlyoutFooter>
+
+</Shell>
