@@ -15,9 +15,17 @@ namespace MauiApp1.Services
             _userRepository = userRepository;
         }
 
-        public async Task InitializeAsync()
+        public async Task<bool> InitializeAsync()
         {
-            if (_isInitialized) return;
+            if (_isInitialized) return true;
+
+            // Check for placeholder values
+            if (Constants.SupabaseUrl.Contains("your-project") ||
+                Constants.SupabaseKey.Contains("your-anon-key"))
+            {
+                Debug.WriteLine("Supabase configuration is using placeholder values. Please update Constants.cs with your actual Supabase credentials.");
+                return false;
+            }
 
             try
             {
@@ -29,17 +37,19 @@ namespace MauiApp1.Services
                 _client = new Supabase.Client(Constants.SupabaseUrl, Constants.SupabaseKey, options);
                 await _client.InitializeAsync();
                 _isInitialized = true;
+                return true;
             }
             catch (Exception ex)
             {
                 Debug.WriteLine($"Supabase initialization error: {ex.Message}");
-                throw;
+                // Don't throw - allow app to continue in offline mode
+                return false;
             }
         }
 
         public async Task<Models.User?> SignUpAsync(string email, string password, UserRole role = UserRole.User)
         {
-            await InitializeAsync();
+            if (!await InitializeAsync()) return null;
 
             try
             {
@@ -71,7 +81,7 @@ namespace MauiApp1.Services
 
         public async Task<Models.User?> SignInAsync(string email, string password)
         {
-            await InitializeAsync();
+            if (!await InitializeAsync()) return null;
 
             try
             {
@@ -113,7 +123,7 @@ namespace MauiApp1.Services
 
         public async Task SignOutAsync()
         {
-            await InitializeAsync();
+            if (!await InitializeAsync()) return;
 
             try
             {
@@ -127,7 +137,7 @@ namespace MauiApp1.Services
 
         public async Task<Models.User?> GetCurrentUserAsync()
         {
-            await InitializeAsync();
+            if (!await InitializeAsync()) return null;
 
             var supabaseUser = _client!.Auth.CurrentUser;
 
@@ -147,7 +157,7 @@ namespace MauiApp1.Services
 
         public async Task<string?> GetAccessTokenAsync()
         {
-            await InitializeAsync();
+            if (!await InitializeAsync()) return null;
             return _client?.Auth.CurrentSession?.AccessToken;
         }
 

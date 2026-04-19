@@ -49,17 +49,27 @@ namespace MauiApp1
 
         public async Task InitializeAuthAsync()
         {
-            await _authStateService.InitializeAsync();
-            UpdateFlyoutVisibility();
+            try
+            {
+                await _authStateService.InitializeAsync();
+                UpdateFlyoutVisibility();
 
-            // Navigate to login if not authenticated, otherwise to main
-            if (!_authStateService.IsAuthenticated)
-            {
-                await GoToAsync("//login");
+                // Navigate to login if not authenticated, otherwise to main
+                if (!_authStateService.IsAuthenticated)
+                {
+                    await GoToAsync("//login");
+                }
+                else
+                {
+                    await GoToAsync("//main");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                await GoToAsync("//main");
+                System.Diagnostics.Debug.WriteLine($"Auth initialization error: {ex.Message}");
+                // Show all content and default to login page
+                UpdateFlyoutVisibility();
+                await GoToAsync("//login");
             }
         }
         public static async Task DisplaySnackbarAsync(string message)
