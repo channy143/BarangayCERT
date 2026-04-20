@@ -73,7 +73,7 @@ namespace MauiApp1.Services
             catch (Exception ex)
             {
                 Debug.WriteLine($"SignUp error: {ex.Message}");
-                throw;
+                return null;
             }
 
             return null;
@@ -115,7 +115,7 @@ namespace MauiApp1.Services
             catch (Exception ex)
             {
                 Debug.WriteLine($"SignIn error: {ex.Message}");
-                throw;
+                return null;
             }
 
             return null;

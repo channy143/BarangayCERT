@@ -7,20 +7,13 @@ namespace MauiApp1
 {
     public partial class AppShell : Shell
     {
-        private readonly AuthStateService _authStateService;
+        private AuthStateService? _authStateService;
 
         public AppShell()
         {
             InitializeComponent();
             var currentTheme = Application.Current!.RequestedTheme;
             ThemeSegmentedControl.SelectedIndex = currentTheme == AppTheme.Light ? 0 : 1;
-
-            // Get AuthStateService from DI
-            _authStateService = Handler?.MauiContext?.Services.GetService<AuthStateService>()
-                ?? throw new InvalidOperationException("AuthStateService not found");
-
-            // Subscribe to auth state changes
-            _authStateService.PropertyChanged += OnAuthStateChanged;
         }
 
         private void OnAuthStateChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -34,6 +27,8 @@ namespace MauiApp1
 
         private void UpdateFlyoutVisibility()
         {
+            if (_authStateService == null) return;
+
             // Hide login page when authenticated
             LoginShellContent.FlyoutItemIsVisible = !_authStateService.IsAuthenticated;
 
@@ -51,6 +46,19 @@ namespace MauiApp1
         {
             try
             {
+                // Get AuthStateService from DI (Handler is now available)
+                _authStateService = Handler?.MauiContext?.Services.GetService<AuthStateService>();
+
+                if (_authStateService == null)
+                {
+                    System.Diagnostics.Debug.WriteLine("AuthStateService not found - showing default UI");
+                    ShowDefaultUi();
+                    return;
+                }
+
+                // Subscribe to auth state changes
+                _authStateService.PropertyChanged += OnAuthStateChanged;
+
                 await _authStateService.InitializeAsync();
                 UpdateFlyoutVisibility();
 
@@ -67,10 +75,20 @@ namespace MauiApp1
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"Auth initialization error: {ex.Message}");
-                // Show all content and default to login page
-                UpdateFlyoutVisibility();
-                await GoToAsync("//login");
+                ShowDefaultUi();
             }
+        }
+
+        private void ShowDefaultUi()
+        {
+            // Show all content and default to login page
+            LoginShellContent.FlyoutItemIsVisible = true;
+            MainShellContent.FlyoutItemIsVisible = false;
+            ProjectsShellContent.FlyoutItemIsVisible = false;
+            ManageMetaShellContent.FlyoutItemIsVisible = false;
+            CertificateRequestShellContent.FlyoutItemIsVisible = false;
+            ManageRequestsShellContent.FlyoutItemIsVisible = false;
+            _ = GoToAsync("//login");
         }
         public static async Task DisplaySnackbarAsync(string message)
         {
@@ -113,7 +131,8 @@ namespace MauiApp1
             base.OnNavigating(args);
 
             // Prevent navigation to authenticated pages if not logged in
-            if (!_authStateService.IsAuthenticated &&
+            if (_authStateService != null &&
+                !_authStateService.IsAuthenticated &&
                 args.Target.Location.OriginalString != "//login")
             {
                 args.Cancel();

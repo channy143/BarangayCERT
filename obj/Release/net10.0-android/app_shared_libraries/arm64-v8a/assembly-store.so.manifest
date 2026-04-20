@@ -129,7 +129,7 @@
 0x57adda3c951abb33 di:114 mi:114 do:4961464 ds:3003 ddo:0 dds:0 cdo:0 cds:0 Microsoft.Extensions.Hosting.Abstractions.dll
 0x57c542c14049b66d di:11 mi:11 do:576252 ds:31302 ddo:0 dds:0 cdo:0 cds:0 System.Diagnostics.DiagnosticSource
 0x58688d9af496b168 di:110 mi:110 do:4911416 ds:28183 ddo:0 dds:0 cdo:0 cds:0 Microsoft.Extensions.DependencyInjection.dll
-0x5a6967a493d5295b di:176 mi:176 do:9040478 ds:335039 ddo:0 dds:0 cdo:0 cds:0 MauiApp1.dll
+0x5a6967a493d5295b di:176 mi:176 do:9040478 ds:336245 ddo:0 dds:0 cdo:0 cds:0 MauiApp1.dll
 0x5ae9cd33b15841bf di:8 mi:8 do:299786 ds:2778 ddo:0 dds:0 cdo:0 cds:0 System.ComponentModel
 0x5b5f0e240a06a2a2 di:72 mi:72 do:4484704 ds:9982 ddo:0 dds:0 cdo:0 cds:0 da/Microsoft.Maui.Controls.resources.dll
 0x5d0a4a29b02d9d3c di:31 mi:31 do:1389753 ds:8479 ddo:0 dds:0 cdo:0 cds:0 System.Net.WebHeaderCollection.dll
@@ -256,7 +256,7 @@
 0xb477491be13109d8 di:69 mi:69 do:4454737 ds:9987 ddo:0 dds:0 cdo:0 cds:0 ar/Microsoft.Maui.Controls.resources
 0xb4bd7015ecee9d86 di:19 mi:19 do:712478 ds:3558 ddo:0 dds:0 cdo:0 cds:0 System.IO.Pipelines
 0xb5c7fcdafbc67ee4 di:116 mi:116 do:4975709 ds:12086 ddo:0 dds:0 cdo:0 cds:0 Microsoft.Extensions.Logging.Abstractions.dll
-0xb6096b3bc026be32 di:176 mi:176 do:9040478 ds:335039 ddo:0 dds:0 cdo:0 cds:0 MauiApp1
+0xb6096b3bc026be32 di:176 mi:176 do:9040478 ds:336245 ddo:0 dds:0 cdo:0 cds:0 MauiApp1
 0xb7212c4683a94afe di:14 mi:14 do:623521 ds:22004 ddo:0 dds:0 cdo:0 cds:0 System.Drawing.Primitives
 0xb7b7753d1f319409 di:95 mi:95 do:4714443 ds:9985 ddo:0 dds:0 cdo:0 cds:0 sv/Microsoft.Maui.Controls.resources
 0xb9185c33a1643eed di:0 mi:0 do:15968 ds:131494 ddo:0 dds:0 cdo:0 cds:0 Microsoft.CSharp.dll
